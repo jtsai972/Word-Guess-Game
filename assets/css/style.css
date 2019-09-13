@@ -1,0 +1,60 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background: #ddd url("../images/strange_bullseyes.png");
+    display: flex;
+        flex-direction: column;
+    font-family: 'Open Sans', 'Arial', 'Helvetica Neue', Helvetica, sans-serif; 
+    line-height: 1.6em;
+    min-height: 100vh;
+    overflow: auto;
+}
+
+/* Basic Font styling */
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Merriweather', Georgia, 'Times New Roman', Times, serif;
+    font-weight: bold;
+}
+
+h1 {
+    font-size: 2em;
+}
+
+p {
+    margin: 1em auto;
+}
+
+/* Layout styling */
+header, footer {
+    background: #444;
+    border-color: #C9C;
+    border-style: solid;
+    color: #ddd;
+    padding: 1em 2em;
+}
+
+header {
+    border-bottom-width: 0.25em;
+}
+header h1 {
+    margin: 1em auto;
+    padding: 0 2rem;
+    width: 90%;
+       max-width: 960px;
+}
+
+article {
+    background: #eee;
+    margin: 2em auto;
+    padding: 1em 2em;
+    width: 90%;
+        max-width: 960px;
+}
+
+footer {
+    border-top-width:0.25em;
+    margin-top: auto;
+    text-align: center;
+}
