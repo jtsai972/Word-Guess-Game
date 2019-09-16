@@ -18,13 +18,11 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: bold;
 }
 
-h1 {
-    font-size: 2em;
-}
+h1 { font-size: 2.5em; }
+h2 { font-size: 2em; }
+h3 { font-size: 1.5em; }
 
-p {
-    margin: 1em auto;
-}
+p { margin: 1em auto; }
 
 /* Layout styling */
 header, footer {
@@ -51,6 +49,15 @@ article {
     padding: 1em 2em;
     width: 90%;
         max-width: 960px;
+}
+
+aside {
+    border: 1px solid #ddd;
+    background: #ddd;
+    padding: 1em 2em;
+        padding-top: 0;
+    width: 33%;
+    float: right;
 }
 
 footer {
