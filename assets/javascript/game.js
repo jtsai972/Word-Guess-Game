@@ -4,105 +4,114 @@
     let wordBank = ["github", "element", "javascript", "cascading", "stylesheet", "angular", "react", "node", "vue", "code"];
 
 //setting basic variables
-    let countWin, countLoss, countGuess; //counters
+    let countWin, countLoss, countGuess, countBlank; //counters
     let correct; //boolean
+    let randomWord; //word
 
-//generate random word
-    function random () {
+    let regex = /[a-zA-Z]/g;
+
+//Setting document id variables
+    let winsText = document.getElementById("wins"),
+        lossesText = document.getElementById("losses"),
+        guessesText = document.getElementById("guesses"),
+        answerText = document.getElementById("answer"),
+        wrongText = document.getElementById("wrong");
+
+//Initiate Game
+    countLoss = countWin = countBlank = 0;
+    countGuess = 9;
+
+    print();
+    randomGenerator();
+
+//generate random word and blank
+    function randomGenerator () {
         //generate random number between 0 to wordbank size
         let randomNum = Math.floor(Math.random() * Math.floor(wordBank.length));
         // console.log(randomNum); //checking that it works
 
+        //set randomWord to 
+        randomWord = wordBank[randomNum];
+        console.log("Random Word: " + randomWord);
+
+        //Setting up blank letters
+        for (let i = 0; i < randomWord.length; i++ ){
+            answer[i] = "_ ";
+            countBlank++;
+        }
+
+        console.log("Counted blanks: " + countBlank);
+
+        answerText.innerHTML = answer.join("");
+        
         //return word
-        return wordBank[randomNum];
     }
-// console.log(random()); //
 
 //check for correct answer
 function checking(guess) {
     correct = false;
 
     //checking for match in the word
-    for(let i = 0; i< countLet; i++) {
-        if(guess === selWord[i]) {
+    for(let i = 0; i< randomWord.length; i++) {
+        if(guess === randomWord[i]) {
             correct = true;
-            answer[i] = selWord[i];
-            document.getElementById("answer").innerHTML += answer[i];
-            blanks--;
-            console.log("blank " + i + ": " + blanks);
+            answer[i] = randomWord[i];
+            countBlank--;
+            console.log("blank " + i + ": " + countBlank);
         }
-        //need another for loop to check match on a l
     }
     
     //if there is no matching letter
     if(correct !== true) {
         countGuess--;
-        document.getElementById("wrong").innerHTML += guess;
+        wrongText.innerHTML += guess;
 
         console.log(countGuess);
     }
 
-    if (blanks <= 0) {
-        answer = random();
-        console.log(answer);
+    if (countBlank <= 0) {
+        countWin++;
+        newWord();
+    }
 
-        reset();
+    if(countGuess <= 0) {
+        countLoss++;
+        newWord();
     }
 
     print();
-}
-
-function printScore() {
-    document.getElementById("wins").innerHTML = countWin;
-    document.getElementById("losses").innerHTML = countLoss;
-    document.getElementById("guesses").innerHTML = countGuess;
-}
+} 
 
 function print() {
-    document.getElementById("answer").innerHTML = answer.join("");
+    winsText.innerHTML = countWin;
+    lossesText.innerHTML = countLoss;
+    guessesText.innerHTML = countGuess;
+    //Printing the answer
+    answerText.innerHTML = answer.join("");
 }
 
-function reset() {
+function newWord() {
     countGuess = 9;
-    selWord = random();
-    countLet = selWord.length;
-    blanks = countLet;
+    countBlank = 0;
+    wrongText.textContent = " ";
+    answer = [];
 
-    //Setting up blank letters
-    for (let i = 0; i < countLet; i++ ){
-        answer[i] = "_ ";
-    }
-
-    printScore();
+    randomGenerator();
     print();
 }
-
-    //Initiate Game
-    countLoss = countWin = 0;
-    countGuess = 9;
-
-    var selWord = random();
-    var countLet = selWord.length;
-    var blanks = countLet;
-    console.log(selWord);
-
-    //Setting up blank letters
-    for (let i = 0; i < countLet; i++ ){
-        answer[i] = "_ ";
-    }
-
-    printScore();
-    print();
 
 
 //When key is pressed, start game
 document.onkeyup = function(event) {
     var guess = event.key;
 
-    checking(guess);
+    if((guess.match(regex))) {
+        checking(guess);
+
+        //issue with repeating letters
+    }
     
     //updating
-    printScore();
     print();
 }
 
