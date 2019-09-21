@@ -2,7 +2,7 @@
     let arrayAnswer = [],
         arrayGuessed = [];
     //setting up basic wordbank
-    let wordBank = ["github", "element", "javascript", "cascading", "stylesheet", "angular", "react", "node", "vue", "code"];
+    let wordBank = ["abalone", "algae", "amberjack","anemone", "anglerfish", "barnacle", "barracuda", "blowfish", "clam", "clown fish", "cod", "coelacanth", "conch", "coral", "crab", "currents", "cuddlefish", "dolphin", "eel", "estuary", "fin", "fish", "flounder", "gar", "grouper", "hammerhead shark", "harbor seal", "hermit crab", "herring", "horseshoe crab", "humpback whale", "intertidal zone", "jellyfish", "kelp", "krill", "limpet", "littoral zone", "lobster", "loggerhead turtle", "mackerel", "manatee", "manta ray", "mollusk", "mussel", "narwhal", "nautilus", "neap tide", "ocean", "octopus", "orca", "otter", "oyster", "phytoplankton", "plankton", "porpoise", "pufferfish", "reef", "sand dollar", "scales", "scallop", "seagull", "seahorse", "seal", "seaweed", "shark", "ship", "shrimp", "squid", "starfish", "stingray", "sunfish", "swordfish", "tide pool", "tsunami", "tuna", "urchin", "walrus", "waves", "whale", "whitecaps", "yellowfin tuna"];
 
 //setting basic variables
     let countWin, countLoss, countGuess, countBlank; //counters
