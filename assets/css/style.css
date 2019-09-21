@@ -1,21 +1,30 @@
 * {
     box-sizing: border-box;
+    transition: all 0.5s ease;
 }
 
 body {
-    background: #ddd url("../images/strange_bullseyes.png");
+    background:#2fabcf;
+    background: 
+        linear-gradient(
+            0deg, 
+            rgba(47,171,207,1) 25%, 
+            rgba(6,143,172,1) 75%
+        );
     display: flex;
         flex-direction: column;
     font-family: 'Open Sans', 'Arial', 'Helvetica Neue', Helvetica, sans-serif; 
     line-height: 1.6em;
     min-height: 100vh;
     overflow: auto;
+    text-align: center;
 }
 
 /* Basic Font styling */
 h1, h2, h3, h4, h5, h6 {
-    font-family: 'Merriweather', Georgia, 'Times New Roman', Times, serif;
+    font-family: 'Courgette', Georgia, 'Times New Roman', Times, serif;
     font-weight: bold;
+    line-height: 1em;
 }
 
 h1 { font-size: 2.5em; }
@@ -26,41 +35,73 @@ p { margin: 1em auto; }
 
 /* Layout styling */
 header, footer {
-    background: #444;
-    border-color: #C9C;
-    border-style: solid;
-    color: #ddd;
-    padding: 1em 2em;
+    padding: 3rem;
 }
 
 header {
-    border-bottom-width: 0.25em;
+    background: url("../images/seasurface2.png") center/cover;
+    padding-top: 0rem;
 }
 header h1 {
+    color: white;
     margin: 1em auto;
     padding: 0 2rem;
+    text-shadow: 0 0 0.25em black;
     width: 90%;
        max-width: 960px;
 }
 
 article {
-    background: #eee;
     margin: 2em auto;
+        margin-top: 0;
     padding: 1em 2em;
     width: 90%;
         max-width: 960px;
 }
 
-aside {
-    border: 1px solid #ddd;
-    background: #ddd;
-    padding: 1em 2em;
-    width: 33%;
-    float: right;
-}
-
 footer {
-    border-top-width:0.25em;
+    background: rgb(194,204,173) url("../images/seafloor2.jpg") right center/cover;
+    color: black;
+    opacity: 0.9;
     margin-top: auto;
     text-align: center;
+}
+
+/* Custom */
+.subtitle {
+    font-size: 70%;
+}
+
+#directions {
+    color: white;
+    font-family: 'Courgette', Georgia, 'Times New Roman', Times, serif;
+    font-size: 2em;
+    font-weight: bold;
+    line-height: 1em;
+    margin-bottom: 2em;
+    margin-top: 0;
+}
+
+.word {
+    font-size: 2em;
+    letter-spacing: 0.5em;
+    margin-bottom: 2em;
+    transition: all 1s ease;
+}
+
+.game {
+    display: flex;
+        align-items: stretch;
+        flex-direction: row;
+        justify-content: space-around;
+        
+}
+.panel {
+    border: 1px solid #ddd;
+    background: rgba(255, 255, 255, 0.25);
+    padding: 2em;
+    width: 50%;
+}
+.scoreboard {
+    width: 33%;
 }

@@ -11,7 +11,7 @@
     <title>Word Guess Game</title>
 
     <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Merriweather|Open+Sans&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Courgette|Open+Sans&display=swap" rel="stylesheet">
 
     <!-- Stylesheets -->
     <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
@@ -21,32 +21,41 @@
 <body>
     <!-- Header -->
     <header>
-        <h1>Word Guess Game</h1>
+        <h1>
+            Word Guess Game<br />
+            <span class="subtitle">Ocean Edition</span>
+        </h1>
     </header>
 
     <!-- Article -->
     <article>
-        <!-- Scoreboard -->
-        <aside class="scoreboard">
-            <h2>Score</h2>
-            <p>Wins: 
-                <span id="wins"></span>
-                    <span></span>
-            </p>
-            <p>Losses: <span id="losses"></span></p>
-            <p>Guesses Left: <span id="guesses"></span></p>
-        </aside>
-
         <!-- Directions -->
-        <p>Press Any Key To Get Started</p>
+        <p id="directions">Press Any Key To Get Started</p>
 
-        <!-- Computer Selected Word -->
-        <h2>Current Word</h2>
-        <p id="answer"></p>
+        <!-- Game -->
+        <section class="game">
+            <section class="panel">
+                <!-- Computer Selected Word -->
+                <h2>Current Word</h2>
+                <p id="answer" class="word"></p>
 
-        <!-- Incorrect Guesses -->
-        <h2>Your Guesses</h2>
-        <p id="wrong"></p>
+                <!-- Incorrect Guesses -->
+                <h2>Your Guesses</h2>
+                <p>&nbsp;<span id="wrong"></span></p>
+            </section>
+
+            <!-- Scoreboard -->
+            <section class="scoreboard panel">
+                <h2>Score</h2>
+                <p>Wins: 
+                    <span id="wins"></span>
+                        <span></span>
+                </p>
+                <p>Losses: <span id="losses"></span></p>
+                <p>Guesses Left: <span id="guesses"></span></p>
+            </section>
+        </section>
+        
     </article>
 
     <!-- Footer -->

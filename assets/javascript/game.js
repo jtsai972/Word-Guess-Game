@@ -1,25 +1,28 @@
 //setting up arrays
-    let answer = [];
+    let arrayAnswer = [],
+        arrayGuessed = [];
     //setting up basic wordbank
     let wordBank = ["github", "element", "javascript", "cascading", "stylesheet", "angular", "react", "node", "vue", "code"];
 
 //setting basic variables
     let countWin, countLoss, countGuess, countBlank; //counters
-    let correct; //boolean
+    let boolCorrect, boolGuessed; //boolean
     let randomWord; //word
-
-    let regex = /[a-zA-Z]/g;
 
 //Setting document id variables
     let winsText = document.getElementById("wins"),
         lossesText = document.getElementById("losses"),
         guessesText = document.getElementById("guesses"),
         answerText = document.getElementById("answer"),
-        wrongText = document.getElementById("wrong");
+        wrongText = document.getElementById("wrong"),
+        directionsText = document.getElementById("directions");
 
 //Initiate Game
     countLoss = countWin = countBlank = 0;
     countGuess = 9;
+    boolCorrect = boolGuessed = false;
+
+    wrongText.textContent = " ";
 
     print();
     randomGenerator();
@@ -36,49 +39,61 @@
 
         //Setting up blank letters
         for (let i = 0; i < randomWord.length; i++ ){
-            answer[i] = "_ ";
+            arrayAnswer[i] = "_";
             countBlank++;
         }
 
         console.log("Counted blanks: " + countBlank);
 
-        answerText.innerHTML = answer.join("");
+        answerText.innerHTML = arrayAnswer.join("");
         
         //return word
     }
 
 //check for correct answer
 function checking(guess) {
-    correct = false;
+    boolCorrect = false;
 
     //checking for match in the word
     for(let i = 0; i< randomWord.length; i++) {
         if(guess === randomWord[i]) {
-            correct = true;
-            answer[i] = randomWord[i];
+            boolCorrect = true;
+            arrayAnswer[i] = randomWord[i];
             countBlank--;
             console.log("blank " + i + ": " + countBlank);
         }
     }
     
     //if there is no matching letter
-    if(correct !== true) {
+    if(boolCorrect !== true) {
         countGuess--;
         wrongText.innerHTML += guess;
 
         console.log(countGuess);
     }
 
+    //if available  blanks reach 0
     if (countBlank <= 0) {
         countWin++;
-        newWord();
+
+        answerText.style.opacity="0";
+        setTimeout(function() {
+            //your code to be executed after 1 second
+            newWord();
+            answerText.style.opacity="1";
+          }, 1000);
+        
+          console.log("You win!");
     }
 
+    //if guesses reach 0
     if(countGuess <= 0) {
         countLoss++;
         newWord();
+        console.log("You lose!");
     }
 
+    //print result
     print();
 } 
 
@@ -87,14 +102,17 @@ function print() {
     lossesText.innerHTML = countLoss;
     guessesText.innerHTML = countGuess;
     //Printing the answer
-    answerText.innerHTML = answer.join("");
+    answerText.innerHTML = arrayAnswer.join("");
 }
 
 function newWord() {
+    //resetting variables
     countGuess = 9;
     countBlank = 0;
-    wrongText.textContent = " ";
-    answer = [];
+    wrongText.textContent = "";
+    arrayAnswer = [];
+    arrayGuessed = [];
+    boolGuessed = false;
 
     randomGenerator();
     print();
@@ -103,12 +121,31 @@ function newWord() {
 
 //When key is pressed, start game
 document.onkeyup = function(event) {
-    var guess = event.key;
 
-    if((guess.match(regex))) {
-        checking(guess);
+    directionsText.style.opacity = "0";
 
-        //issue with repeating letters
+    //check if it's a valid letter
+    if((event.keyCode >=65) && (event.keyCode <= 90)) {
+
+        var guess = event.key;
+        boolGuessed = false;
+        
+        //see if this has been entered before
+        for(let i = 0; i < arrayGuessed.length; i++) {
+            if(guess === arrayGuessed[i]) {
+                boolGuessed = true;
+            }
+        }
+
+        //if it's new, add it to array and then check if wrong or right
+        if(boolGuessed === false) {
+            //add item to array
+            arrayGuessed.push(guess);
+    
+            //check 
+            checking(guess);
+        }
+            
     }
     
     //updating
