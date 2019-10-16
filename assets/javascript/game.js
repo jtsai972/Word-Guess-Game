@@ -81,9 +81,9 @@ function checking(guess) {
             //your code to be executed after 1 second
             newWord();
             answerText.style.opacity="1";
-          }, 1000);
+        }, 1000);
         
-          console.log("You win!");
+        console.log("You win!");
     }
 
     //if guesses reach 0
